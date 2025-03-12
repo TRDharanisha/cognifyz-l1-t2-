@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 1 Task 2</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            background: linear-gradient(135deg, #ff9397, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin: 0;
+            display: none; 
+        }
+
+        button {
+            background: skyblue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 1s ease-in-out;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" placeholder="Enter Number 1" id="num1">
+        <p class="error" id="error1">Please enter a number</p>
+        <input type="text" placeholder="Enter Number 2" id="num2">
+        <p class="error" id="error2">Please enter a number</p>
+        <button onclick="add(this)" id="btn">Add</button>
+        <h1 id="result">Result is:</h1>
+    </div>
+
+    <script>
+        function add(btn) {
+            var n1 = document.getElementById("num1");
+            var n2 = document.getElementById("num2");
+            var res = document.getElementById("result");
+            var e1 = document.getElementById("error1");
+            var e2 = document.getElementById("error2");
+
+            let valid = true;
+
+            if (n1.value.trim() === "") {
+                e1.style.display = "block";
+                valid = false;
+            } else {
+                e1.style.display = "none";
+            }
+
+            if (n2.value.trim() === "") {
+                e2.style.display = "block";
+                valid = false;
+            } else {
+                e2.style.display = "none";
+            }
+
+            if (!valid) return; 
+
+            var sum = Number(n1.value) + Number(n2.value);
+            res.textContent = "Result is: " + sum;
+
+           
+            btn.style.backgroundColor = btn.style.backgroundColor === 'blue' ? 'red' : 'red';
+
+            const h = new Date().getHours();
+            let g;
+
+            if (h < 12) {
+                g = "Good morning! Your result is displayed. The page will refresh now.";
+            } else if (h < 17) {
+                g = "Good afternoon! Your result is displayed. The page will refresh now.";
+            } else {
+                g = "Good evening! Your result is displayed. The page will refresh now.";
+            }
+
+            setTimeout(() => {
+                alert(g);
+                location.reload();
+            }, 1500); 
+        }
+    </script>
+</body>
+</html>
